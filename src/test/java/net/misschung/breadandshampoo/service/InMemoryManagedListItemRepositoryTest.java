@@ -4,6 +4,7 @@ import net.misschung.breadandshampoo.model.ListItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,48 @@ public class InMemoryManagedListItemRepositoryTest {
 
         InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), store);
         Assertions.assertThrows(ItemDoesNotExistException.class, () -> repo.updateItem("a", 2, "shampoo"));
+    }
 
+    @Test
+    public void updateItemOfAnotherUser() {
+        Map<Integer, ManagedListItem> store = new HashMap<>();
+        store.put(1, new ManagedListItem(new ListItem(1, "bread"), "a", false));
+
+        InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), store);
+        Assertions.assertThrows(WrongItemOwnerException.class, () -> repo.updateItem("b", 1, "shampoo"));
+    }
+
+    @Test
+    public void deleteExistingItemOwnedByUser() {
+        Map<Integer, ManagedListItem> store = new HashMap<>();
+        store.put(1, new ManagedListItem(new ListItem(1, "bread"), "a", false));
+        store.put(2, new ManagedListItem(new ListItem(2, "shampoo"), "a", false));
+
+        InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), store);
+        ManagedListItem result = repo.deleteItem("a", 2);
+
+        ManagedListItem deletedItem = new ManagedListItem(new ListItem(2, "shampoo"), "a", true);
+        Assertions.assertEquals(result, deletedItem);
+
+        List<ManagedListItem> managedListItems = repo.listUserItems("a");
+
+        Assertions.assertEquals(managedListItems.size(), 1);
+        Assertions.assertEquals(managedListItems.get(0), new ManagedListItem(new ListItem(1, "bread"), "a", false));
+    }
+
+    @Test
+    public void deleteNonExistingItem() {
+        InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), Collections.emptyMap());
+        Assertions.assertThrows(ItemDoesNotExistException.class, () -> repo.deleteItem("a", 1));
+    }
+
+    @Test
+    public void deleteItemOfAnotherUser() {
+        Map<Integer, ManagedListItem> store = new HashMap<>();
+        store.put(1, new ManagedListItem(new ListItem(1, "bread"), "a", false));
+
+        InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), store);
+        Assertions.assertThrows(WrongItemOwnerException.class, () -> repo.deleteItem("b", 1));
     }
 
 }
