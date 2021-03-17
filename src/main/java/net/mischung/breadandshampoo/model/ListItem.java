@@ -1,4 +1,4 @@
-package net.misschung.breadandshampoo.model;
+package net.mischung.breadandshampoo.model;
 
 import java.util.Objects;
 

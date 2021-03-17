@@ -1,4 +1,4 @@
-package net.misschung.breadandshampoo;
+package net.mischung.breadandshampoo;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;

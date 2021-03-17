@@ -1,4 +1,4 @@
-package net.misschung.breadandshampoo.model;
+package net.mischung.breadandshampoo.model;
 
 public class ListManagementException extends RuntimeException {
     public ListManagementException(String message) {

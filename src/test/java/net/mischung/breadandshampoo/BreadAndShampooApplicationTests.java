@@ -1,4 +1,4 @@
-package net.misschung.breadandshampoo;
+package net.mischung.breadandshampoo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

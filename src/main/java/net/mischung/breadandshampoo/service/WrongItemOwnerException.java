@@ -1,6 +1,6 @@
-package net.misschung.breadandshampoo.service;
+package net.mischung.breadandshampoo.service;
 
-import net.misschung.breadandshampoo.model.ListManagementException;
+import net.mischung.breadandshampoo.model.ListManagementException;
 
 public class WrongItemOwnerException extends ListManagementException {
 

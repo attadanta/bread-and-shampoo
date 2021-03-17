@@ -1,7 +1,7 @@
-package net.misschung.breadandshampoo.service.ops;
+package net.mischung.breadandshampoo.service.ops;
 
-import net.misschung.breadandshampoo.model.ListItem;
-import net.misschung.breadandshampoo.service.ManagedListItem;
+import net.mischung.breadandshampoo.model.ListItem;
+import net.mischung.breadandshampoo.service.ManagedListItem;
 
 public class UpdateItem extends AbstractItemUpdate {
     private final String item;

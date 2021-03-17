@@ -1,6 +1,6 @@
-package net.misschung.breadandshampoo.service.ops;
+package net.mischung.breadandshampoo.service.ops;
 
-import net.misschung.breadandshampoo.service.ManagedListItem;
+import net.mischung.breadandshampoo.service.ManagedListItem;
 
 public class DeleteItem extends AbstractItemUpdate {
     public DeleteItem(String owner) {

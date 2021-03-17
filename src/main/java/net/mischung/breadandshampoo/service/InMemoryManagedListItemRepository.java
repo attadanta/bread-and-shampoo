@@ -1,9 +1,9 @@
-package net.misschung.breadandshampoo.service;
+package net.mischung.breadandshampoo.service;
 
-import net.misschung.breadandshampoo.model.ListItem;
-import net.misschung.breadandshampoo.model.ListManagementException;
-import net.misschung.breadandshampoo.service.ops.DeleteItem;
-import net.misschung.breadandshampoo.service.ops.UpdateItem;
+import net.mischung.breadandshampoo.service.ops.DeleteItem;
+import net.mischung.breadandshampoo.service.ops.UpdateItem;
+import net.mischung.breadandshampoo.model.ListItem;
+import net.mischung.breadandshampoo.model.ListManagementException;
 
 import java.util.Comparator;
 import java.util.List;

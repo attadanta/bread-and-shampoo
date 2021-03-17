@@ -1,6 +1,6 @@
-package net.misschung.breadandshampoo.service;
+package net.mischung.breadandshampoo.service;
 
-import net.misschung.breadandshampoo.model.ListItem;
+import net.mischung.breadandshampoo.model.ListItem;
 
 import java.util.Objects;
 

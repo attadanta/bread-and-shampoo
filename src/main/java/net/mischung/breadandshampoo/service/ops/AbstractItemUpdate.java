@@ -1,9 +1,9 @@
-package net.misschung.breadandshampoo.service.ops;
+package net.mischung.breadandshampoo.service.ops;
 
-import net.misschung.breadandshampoo.model.ListItem;
-import net.misschung.breadandshampoo.service.ItemDoesNotExistException;
-import net.misschung.breadandshampoo.service.ManagedListItem;
-import net.misschung.breadandshampoo.service.WrongItemOwnerException;
+import net.mischung.breadandshampoo.model.ListItem;
+import net.mischung.breadandshampoo.service.ItemDoesNotExistException;
+import net.mischung.breadandshampoo.service.ManagedListItem;
+import net.mischung.breadandshampoo.service.WrongItemOwnerException;
 
 import java.util.function.BiFunction;
 
