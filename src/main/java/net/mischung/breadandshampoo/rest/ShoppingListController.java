@@ -3,12 +3,14 @@ package net.mischung.breadandshampoo.rest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import net.mischung.breadandshampoo.model.ListItem;
+import net.mischung.breadandshampoo.model.ListManagementException;
 import net.mischung.breadandshampoo.service.ItemDoesNotExistException;
 import net.mischung.breadandshampoo.service.ManagedListItemRepository;
 import net.mischung.breadandshampoo.service.UserShoppingList;
 import net.mischung.breadandshampoo.service.WrongItemOwnerException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -66,11 +68,16 @@ public class ShoppingListController {
     }
 
     @ExceptionHandler({ ItemDoesNotExistException.class, WrongItemOwnerException.class })
-    public ResponseEntity<Void> handleException() {
+    public ResponseEntity<Void> handleItemAccessException() {
         // Due to time constraints, we don't implement an error representation. The response
         // code is intentional, however. Since list items are globally unique, we don't want
         // to reveal the fact that someone has accessed an item of a different user.
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler({ListManagementException.class })
+    public ResponseEntity<Void> handleGeneralException() {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
     }
 
     UserShoppingList getShoppingList(String owner) {
