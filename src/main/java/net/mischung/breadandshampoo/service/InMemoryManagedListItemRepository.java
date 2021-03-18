@@ -38,9 +38,9 @@ public class InMemoryManagedListItemRepository implements ManagedListItemReposit
 
     @Override
     public ManagedListItem insertItem(String owner, String item) {
-        int id = idGenerator.incrementAndGet();
+        int id = this.idGenerator.incrementAndGet();
         ListItem data = new ListItem(id, item);
-        return store.put(id, new ManagedListItem(data, owner, false));
+        return this.store.put(id, new ManagedListItem(data, owner, false));
     }
 
     @Override
@@ -53,9 +53,13 @@ public class InMemoryManagedListItemRepository implements ManagedListItemReposit
         return modifyItem(itemId, new UpdateItem(owner, item));
     }
 
+    public void clear() {
+        this.store.clear();
+    }
+
     private ManagedListItem modifyItem(int itemId, BiFunction<Integer, ManagedListItem, ManagedListItem> mutation) {
         try {
-            return store.compute(itemId, mutation);
+            return this.store.compute(itemId, mutation);
         } catch (RuntimeException e) {
             if (e.getCause() instanceof ListManagementException) {
                 throw (ListManagementException) e.getCause();
