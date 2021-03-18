@@ -5,7 +5,7 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
 
-@Schema(description = "A new or update list item.")
+@Schema(description = "A new or updated list item.")
 public class ItemWrite {
 
     @NotBlank
