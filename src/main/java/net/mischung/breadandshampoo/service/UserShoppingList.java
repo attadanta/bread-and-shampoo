@@ -12,7 +12,7 @@ public class UserShoppingList implements ShoppingList {
     private final String owner;
     private final ManagedListItemRepository repository;
 
-    public UserShoppingList(String owner, ManagedListItemRepository repository) {
+    public UserShoppingList(ManagedListItemRepository repository, String owner) {
         this.owner = owner;
         this.repository = repository;
     }
