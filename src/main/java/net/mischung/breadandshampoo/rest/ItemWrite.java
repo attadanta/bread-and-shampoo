@@ -1,10 +1,15 @@
 package net.mischung.breadandshampoo.rest;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+import org.hibernate.validator.constraints.Length;
+
 import javax.validation.constraints.NotBlank;
 
-public class UpdateItem {
+@Schema(description = "A new or update list item.")
+public class ItemWrite {
 
     @NotBlank
+    @Length(min = 1,max = 255)
     private String item;
 
     public String getItem() {
@@ -17,7 +22,7 @@ public class UpdateItem {
 
     @Override
     public String toString() {
-        return "UpdateItem{" +
+        return "InsertItem{" +
                 "item='" + item + '\'' +
                 '}';
     }

@@ -4,6 +4,7 @@ import net.mischung.breadandshampoo.model.ListItem;
 import net.mischung.breadandshampoo.service.InMemoryManagedListItemRepository;
 import net.mischung.breadandshampoo.test.Matchers;
 import net.mischung.breadandshampoo.test.Values;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +13,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
@@ -113,6 +112,26 @@ class BreadAndShampooApplicationTests {
     }
 
     @Test
+    void updateAnItemWithLongEntry() throws Exception {
+        MvcResult mvcResult = this.mockMvc.perform(
+                post("/a/list")
+                        .contentType("application/json")
+                        .content("{ \"item\": \"bread\" }"))
+                .andExpect(status().isOk()).andReturn();
+
+        ListItem listItem = this.values.readItem(mvcResult);
+
+        String content = String.format("{ \"item\": \"%s\" }", longString());
+
+        this.mockMvc.perform(
+                put("/a/list/items/" + listItem.getId())
+                        .contentType("application/json")
+                        .content(content))
+                .andDo(log())
+                .andExpect(status().is4xxClientError());
+    }
+
+    @Test
     void updateNonExistingItem() throws Exception {
         this.mockMvc.perform(
                 put("/a/list/items/1")
@@ -188,10 +207,7 @@ class BreadAndShampooApplicationTests {
     }
 
     String longString() {
-        // Credit: https://www.baeldung.com/java-random-string
-        byte[] array = new byte[666];
-        new Random().nextBytes(array);
-        return new String(array, StandardCharsets.UTF_8);
+        return RandomStringUtils.random(666, true, false);
     }
 
 }

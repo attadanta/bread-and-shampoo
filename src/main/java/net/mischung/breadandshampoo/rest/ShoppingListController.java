@@ -38,23 +38,27 @@ public class ShoppingListController {
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Insert an item")
-    public ListItem insertItem(@PathVariable(name = "userName") String userName, @Validated @RequestBody InsertItem insertItem) {
+    public ListItem insertItem(@PathVariable(name = "userName") String userName,
+                               @Validated @RequestBody ItemWrite itemWrite) {
         accessLog.info(String.format("Inserting a list item for `%s'", userName));
         UserShoppingList shoppingList = getShoppingList(userName);
-        return shoppingList.insertItem(insertItem.getItem());
+        return shoppingList.insertItem(itemWrite.getItem());
     }
 
     @PutMapping(path = "/items/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @Operation(summary = "Change an item")
-    public ListItem updateItem(@PathVariable(name = "userName") String userName, @PathVariable(name = "id") Integer id, @Validated @RequestBody UpdateItem updateItem) {
+    public ListItem updateItem(@PathVariable(name = "userName") String userName,
+                               @PathVariable(name = "id") Integer id,
+                               @Validated @RequestBody ItemWrite itemWrite) {
         accessLog.info(String.format("Updating list item %d for `%s'", id, userName));
         UserShoppingList shoppingList = getShoppingList(userName);
-        return shoppingList.updateItem(id, updateItem.getItem());
+        return shoppingList.updateItem(id, itemWrite.getItem());
     }
 
     @DeleteMapping(path = "/items/{id}")
     @Operation(summary = "Delete an item")
-    public ResponseEntity<Void> deleteItem(@PathVariable(name = "userName") String userName, @PathVariable(name = "id") Integer itemId) {
+    public ResponseEntity<Void> deleteItem(@PathVariable(name = "userName") String userName,
+                                           @PathVariable(name = "id") Integer itemId) {
         accessLog.info(String.format("Deleting list item %d for `%s'", itemId, userName));
         UserShoppingList shoppingList = getShoppingList(userName);
         shoppingList.deleteItem(itemId);
@@ -63,9 +67,9 @@ public class ShoppingListController {
 
     @ExceptionHandler({ ItemDoesNotExistException.class, WrongItemOwnerException.class })
     public ResponseEntity<Void> handleException() {
-        // Due to time constraints, we don't implement an error representation.
-        // The response code is intentional, however.
-        // We don't want to reveal the fact that someone has accessed an item of a different user.
+        // Due to time constraints, we don't implement an error representation. The response
+        // code is intentional, however. Since list items are globally unique, we don't want
+        // to reveal the fact that someone has accessed an item of a different user.
         return ResponseEntity.notFound().build();
     }
 
