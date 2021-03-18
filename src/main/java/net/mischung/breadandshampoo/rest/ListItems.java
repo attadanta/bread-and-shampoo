@@ -1,10 +1,12 @@
 package net.mischung.breadandshampoo.rest;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import net.mischung.breadandshampoo.model.ListItem;
 
 import java.util.List;
 import java.util.Objects;
 
+@Schema(name = "ShoppingList", description = "The user's shopping list")
 public class ListItems {
 
     private List<ListItem> items;
@@ -30,6 +32,5 @@ public class ListItems {
     public void setSize(int size) {
         this.size = size;
     }
-
 
 }

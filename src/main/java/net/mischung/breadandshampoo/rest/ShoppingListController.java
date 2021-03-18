@@ -1,5 +1,7 @@
 package net.mischung.breadandshampoo.rest;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import net.mischung.breadandshampoo.model.ListItem;
 import net.mischung.breadandshampoo.service.ItemDoesNotExistException;
 import net.mischung.breadandshampoo.service.ManagedListItemRepository;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/{userName}/list", produces = MediaType.APPLICATION_JSON_VALUE)
+@Tag(name = "Shopping List", description = "RESTful interface of Bread and Shampoo, Inc.")
 public class ShoppingListController {
 
     // This is neither an access log, nor the only true way to name this variable, but you should get the idea
@@ -26,6 +29,7 @@ public class ShoppingListController {
     }
 
     @GetMapping()
+    @Operation(summary = "Shopping list items", description = "Buy this")
     public ListItems listItems(@PathVariable(name = "userName") String userName) {
         accessLog.info(String.format("Getting list items for `%s'", userName));
         UserShoppingList shoppingList = getShoppingList(userName);
@@ -33,6 +37,7 @@ public class ShoppingListController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @Operation(summary = "Insert an item")
     public ListItem insertItem(@PathVariable(name = "userName") String userName, @Validated @RequestBody InsertItem insertItem) {
         accessLog.info(String.format("Inserting a list item for `%s'", userName));
         UserShoppingList shoppingList = getShoppingList(userName);
