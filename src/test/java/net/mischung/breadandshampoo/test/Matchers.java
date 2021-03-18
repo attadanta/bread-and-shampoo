@@ -22,4 +22,5 @@ public class Matchers {
     public ResultMatcher bodyMatchesItemList(List<ListItem> expectedListItems) {
         return new ListEntriesMatcher(this.objectMapper, expectedListItems);
     }
+
 }

@@ -3,7 +3,7 @@ package net.mischung.breadandshampoo;
 import net.mischung.breadandshampoo.model.ListItem;
 import net.mischung.breadandshampoo.service.InMemoryManagedListItemRepository;
 import net.mischung.breadandshampoo.test.Matchers;
-import net.mischung.breadandshampoo.test.Values;
+import net.mischung.breadandshampoo.test.Responses;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class BreadAndShampooApplicationTests {
 
     private final Matchers matchers = new Matchers();
-    private final Values values = new Values();
+    private final Responses responses = new Responses();
 
     @Autowired
     private MockMvc mockMvc;
@@ -92,7 +92,7 @@ class BreadAndShampooApplicationTests {
                         .content("{ \"item\": \"bread\" }"))
                 .andExpect(status().isOk()).andReturn();
 
-        ListItem listItem = this.values.readItem(mvcResult);
+        ListItem listItem = this.responses.readItem(mvcResult);
 
         this.mockMvc.perform(
                 put("/a/list/items/" + listItem.getId())
@@ -119,7 +119,7 @@ class BreadAndShampooApplicationTests {
                         .content("{ \"item\": \"bread\" }"))
                 .andExpect(status().isOk()).andReturn();
 
-        ListItem listItem = this.values.readItem(mvcResult);
+        ListItem listItem = this.responses.readItem(mvcResult);
 
         String content = String.format("{ \"item\": \"%s\" }", longString());
 
@@ -149,7 +149,7 @@ class BreadAndShampooApplicationTests {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        ListItem listItem = this.values.readItem(result);
+        ListItem listItem = this.responses.readItem(result);
 
         this.mockMvc.perform(
                 put("/b/list/items/" + listItem.getId())
@@ -166,7 +166,7 @@ class BreadAndShampooApplicationTests {
                         .content("{ \"item\": \"bread\" }"))
                 .andExpect(status().isOk()).andReturn();
 
-        ListItem listItem = this.values.readItem(mvcResult);
+        ListItem listItem = this.responses.readItem(mvcResult);
 
         this.mockMvc.perform(delete("/a/list/items/" + listItem.getId()))
                 .andExpect(status().isNoContent())
@@ -194,7 +194,7 @@ class BreadAndShampooApplicationTests {
                 .andExpect(status().isOk())
                 .andReturn();
 
-        ListItem listItem = this.values.readItem(result);
+        ListItem listItem = this.responses.readItem(result);
 
         this.mockMvc
                 .perform(delete("/b/list/items/" + listItem.getId()))

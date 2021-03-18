@@ -14,13 +14,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * This class exists solely as a reminder to pick a different JVM language when working with JSON.
+ * A helper object for consuming API responses.
+ *
+ * <p>This class exists solely as a reminder to pick a different JVM language when working with JSON.</p>
  */
-public class Values {
+public class Responses {
 
     private final ObjectMapper objectMapper;
 
-    public Values() {
+    public Responses() {
         // Time constraints => no injection
         this.objectMapper = new ObjectMapper();
     }
