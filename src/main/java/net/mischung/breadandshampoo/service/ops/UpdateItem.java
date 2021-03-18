@@ -6,6 +6,7 @@ import net.mischung.breadandshampoo.service.ManagedListItem;
 import java.util.Objects;
 
 public class UpdateItem extends AbstractItemUpdate {
+
     private final String item;
 
     public UpdateItem(String owner, String item) {
@@ -17,4 +18,5 @@ public class UpdateItem extends AbstractItemUpdate {
     public ManagedListItem doApply(Integer itemId, ManagedListItem managedListItem, ListItem originalItemData) {
         return managedListItem.withData(originalItemData.withItem(item));
     }
+
 }

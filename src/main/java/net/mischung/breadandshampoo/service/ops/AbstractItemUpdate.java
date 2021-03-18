@@ -24,7 +24,7 @@ abstract class AbstractItemUpdate implements BiFunction<Integer, ManagedListItem
 
     ListItem verifyDataExistenceAndOwnership(Integer id, ManagedListItem managedListItem) {
         if (managedListItem == null) {
-            String message = "Item not found found: " + id;
+            String message = String.format("Item not found: %d", id);
             ItemDoesNotExistException itemDoesNotExistException = new ItemDoesNotExistException(message);
             itemDoesNotExistException.setItemId(id);
             throw itemDoesNotExistException;
