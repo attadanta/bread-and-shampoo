@@ -39,8 +39,9 @@ public class InMemoryManagedListItemRepository implements ManagedListItemReposit
     @Override
     public ManagedListItem insertItem(String owner, String item) {
         int id = this.idGenerator.incrementAndGet();
-        ListItem data = new ListItem(id, item);
-        return this.store.put(id, new ManagedListItem(data, owner, false));
+        ManagedListItem managedListItem = new ManagedListItem(new ListItem(id, item), owner, false);
+        this.store.put(id, managedListItem);
+        return managedListItem;
     }
 
     @Override

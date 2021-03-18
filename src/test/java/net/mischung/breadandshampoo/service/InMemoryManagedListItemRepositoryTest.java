@@ -19,6 +19,14 @@ public class InMemoryManagedListItemRepositoryTest {
     }
 
     @Test
+    public void insertItem() {
+        InMemoryManagedListItemRepository repo = new InMemoryManagedListItemRepository(new AtomicInteger(), Collections.emptyMap());
+        Assertions.assertEquals(repo.insertItem("a", "bread"), new ManagedListItem(new ListItem(1, "bread"), "a", false));
+        Assertions.assertEquals(repo.insertItem("a", "shampoo"), new ManagedListItem(new ListItem(2, "shampoo"), "a", false));
+        Assertions.assertEquals(2, repo.listUserItems("a").size());
+    }
+
+    @Test
     public void listFiltersByOwnerAndDeletedFlag() {
         Map<Integer, ManagedListItem> store = new HashMap<>();
         store.put(1, new ManagedListItem(new ListItem(1, "bread"), "a", false));
