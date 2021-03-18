@@ -14,13 +14,9 @@ jobs:
           java-version: 1.11
       - name: Build
         run: ./gradlew build
-      - name: Test
-        run: ./gradlew test
-      - name: Package
-        run: ./gradlew bootWar
       - name: Archive artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: war
+          name: bread-and-shampoo
           path: |
-            build/libs/*.war
+            build/libs/*
