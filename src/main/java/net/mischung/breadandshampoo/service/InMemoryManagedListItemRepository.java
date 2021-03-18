@@ -60,15 +60,7 @@ public class InMemoryManagedListItemRepository implements ManagedListItemReposit
     }
 
     private ManagedListItem modifyItem(int itemId, BiFunction<Integer, ManagedListItem, ManagedListItem> mutation) {
-        try {
-            return this.store.compute(itemId, mutation);
-        } catch (RuntimeException e) {
-            if (e.getCause() instanceof ListManagementException) {
-                throw (ListManagementException) e.getCause();
-            } else {
-                throw e;
-            }
-        }
+        return this.store.compute(itemId, mutation);
     }
 
 }
