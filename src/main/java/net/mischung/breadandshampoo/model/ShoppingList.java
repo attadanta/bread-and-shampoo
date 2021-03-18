@@ -25,7 +25,7 @@ public interface ShoppingList {
     ListItem updateItem(int itemId, String item);
 
     /**
-     * Adds an item to this list..
+     * Adds an item to this list.
      *
      * @param item the shopping item to enter.
      * @return the inserted item.

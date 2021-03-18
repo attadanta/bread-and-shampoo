@@ -4,6 +4,9 @@ import net.mischung.breadandshampoo.model.ListItem;
 
 import java.util.Objects;
 
+/**
+ * An entry in a list item store.
+ */
 public class ManagedListItem {
 
     private final String owner;

@@ -7,6 +7,11 @@ import net.mischung.breadandshampoo.model.ShoppingList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A shopping list belonging to a particular user.
+ *
+ * <p>This implementation is backed by a {@link ManagedListItemRepository}</p>
+ */
 public class UserShoppingList implements ShoppingList {
 
     private final String owner;

@@ -2,6 +2,9 @@ package net.mischung.breadandshampoo.model;
 
 import java.util.Objects;
 
+/**
+ * A shopping list entry.
+ */
 public class ListItem {
 
     private final int id;
@@ -21,7 +24,7 @@ public class ListItem {
     }
 
     public ListItem withItem(String item) {
-        return new ListItem(id, item);
+        return new ListItem(this.id, item);
     }
 
     @Override

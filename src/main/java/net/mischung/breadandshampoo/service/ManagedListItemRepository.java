@@ -4,6 +4,9 @@ import net.mischung.breadandshampoo.model.ListManagementException;
 
 import java.util.List;
 
+/**
+ * A store of list items.
+ */
 public interface ManagedListItemRepository {
 
     List<ManagedListItem> listUserItems(String owner) throws ListManagementException;

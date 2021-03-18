@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ReadOnlyShoppingList implements ShoppingList {
+
     private final List<ListItem> items;
 
     public ReadOnlyShoppingList(List<ListItem> items) {
@@ -33,4 +34,5 @@ public class ReadOnlyShoppingList implements ShoppingList {
     public void deleteItem(int itemId) {
         throw new UnsupportedOperationException("This list is read only");
     }
+
 }
