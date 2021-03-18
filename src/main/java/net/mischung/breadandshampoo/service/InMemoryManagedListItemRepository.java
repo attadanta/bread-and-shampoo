@@ -54,8 +54,9 @@ public class InMemoryManagedListItemRepository implements ManagedListItemReposit
         return modifyItem(itemId, new UpdateItem(owner, item));
     }
 
-    public void clear() {
+    public void reset() {
         this.store.clear();
+        this.idGenerator.set(0);
     }
 
     private ManagedListItem modifyItem(int itemId, BiFunction<Integer, ManagedListItem, ManagedListItem> mutation) {
