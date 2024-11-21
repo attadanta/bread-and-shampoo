@@ -21,7 +21,7 @@ implementation:
 * No UI also means no HTML representation of the shopping list. Content negotiation is therefore off
   the table.
 * A Swagger UI, however, would be desirable.
-* No persistence layer. I don't thing I can manage setting that up within the time constraints (and
+* No persistence layer. I don't think I can manage setting that up within the time constraints (and
   frankly, it's no fun).
 
 ## Getting Up and Running
