@@ -10,7 +10,7 @@ After looking at the problem statement, I came up with the following assumptions
 implementation:
 
 * In this project, we are focusing on the requirement list items being identifiable by an ID. It can
-  be argued that there's an important business case behind it and therefore we will make list
+  be argued that there's an important business case behind it, and therefore we will make list
   entries top-level entities.
 * The service makes a minimal effort towards multi-tenancy, however insecure. That means that the
   list management takes place under the `/{userName}` path.
