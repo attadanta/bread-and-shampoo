@@ -30,7 +30,8 @@ This is a Spring Boot App, which can be built and executed by gradle:
 
 `./gradlew bootRun`
 
-Once running, you can use the Swagger UI at [/swagger-ui.html][1] to get to know the API.
+Attention web 3.0 programmers: you will need to use Java 11. Once running, you can use the Swagger UI at
+[/swagger-ui.html][1] to get to know the API.
 
 To run the tests, do
 
